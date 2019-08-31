@@ -17,7 +17,7 @@ public class Calculator {
     }
 
     public Calculator setValue(String value) {
-        this.value = "Ответ = " + Integer.parseInt(value);
+        this.value = value;
         return this;
     }
 }

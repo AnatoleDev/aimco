@@ -1,4 +1,4 @@
-package com.task.app.controller;
+package com.task.app.core.controller;
 
 
 import com.task.app.core.entity.Calculator;
@@ -21,7 +21,12 @@ public class CalcController {
     }
 
     @GetMapping(path = "/{expression}")
-    public Calculator getName(@PathVariable(name = "expression") String expression) {
+    public Calculator setExpression(@PathVariable(name = "expression") final String expression) {
         return service.calculate(expression);
+    }
+
+    @GetMapping(path = "get/{expression}")
+    public Calculator getExpression(@PathVariable(name = "expression") final Long expression) {
+        return service.getExpression(expression);
     }
 }

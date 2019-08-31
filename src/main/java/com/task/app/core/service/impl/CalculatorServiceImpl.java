@@ -20,4 +20,9 @@ public class CalculatorServiceImpl implements CalculatorService {
                 .setValue(expression);
         return repository.save(calculator);
     }
+
+    @Override
+    public Calculator getExpression(final Long expressionId) {
+        return repository.findById(expressionId).orElseThrow();
+    }
 }
