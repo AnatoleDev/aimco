@@ -1,8 +1,8 @@
 package com.task.app.controller;
 
 
-import com.task.app.entity.Calculator;
-import com.task.app.service.CalculatorService;
+import com.task.app.core.entity.Calculator;
+import com.task.app.core.service.CalculatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

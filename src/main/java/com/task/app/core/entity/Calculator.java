@@ -1,8 +1,16 @@
-package com.task.app.entity;
+package com.task.app.core.entity;
 
+import javax.persistence.*;
+
+@Entity
 public class Calculator {
 
-    private String value = "Hello";
+    @Id()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column
+    private String value;
 
     public String getValue() {
         return value;

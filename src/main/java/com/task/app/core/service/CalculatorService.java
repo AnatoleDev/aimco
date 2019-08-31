@@ -1,6 +1,6 @@
-package com.task.app.service;
+package com.task.app.core.service;
 
-import com.task.app.entity.Calculator;
+import com.task.app.core.entity.Calculator;
 
 public interface CalculatorService {
 
