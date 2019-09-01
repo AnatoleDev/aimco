@@ -20,4 +20,6 @@ public interface CalculatorService {
     List<String> onDate(final LocalDate date);
 
     List<String> onOperation(final String expression);
+
+    String popular();
 }

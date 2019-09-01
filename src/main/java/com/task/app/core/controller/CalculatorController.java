@@ -67,7 +67,7 @@ public class CalculatorController {
 
     //самое используемое число
     @GetMapping("/popular")
-    public int operation() {
-        return 0;
+    public String popular() {
+        return service.popular();
     }
 }

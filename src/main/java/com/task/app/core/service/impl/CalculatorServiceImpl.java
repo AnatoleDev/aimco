@@ -6,7 +6,10 @@ import com.task.app.core.service.CalculatorService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.*;
+import java.util.Map.Entry;
+
+import static java.util.Objects.nonNull;
 
 @Service
 public class CalculatorServiceImpl implements CalculatorService {
@@ -51,5 +54,43 @@ public class CalculatorServiceImpl implements CalculatorService {
     @Override
     public List<String> onOperation(String expression) {
         return repository.findAllByExpressionLike(expression);
+    }
+
+    @Override
+    public String popular() {
+        Map<Character, Integer> map = new HashMap<>();
+        getAll().forEach(calculator -> {
+                    String str = calculator.getExpression();
+                    char[] chars = str.toCharArray();
+                    for (Character c : chars) {
+                        if (!isOperator(c)) {
+                            int k = 1;
+                            if (map.containsKey(c)) {
+                                k = map.get(c) + 1;
+                            }
+                            map.put(c, k);
+                        }
+                    }
+                }
+        );
+        Set<Entry<Character, Integer>> setvalue = map.entrySet();
+        Iterator<Entry<Character, Integer>> i = setvalue.iterator();
+        Entry<Character, Integer> max = null;
+        while (i.hasNext()) {
+            Entry<Character, Integer> me = i.next();
+            if (max == null) {
+                max = me;
+            } else if (me.getValue() > max.getValue()) {
+                max = me;
+            }
+        }
+        return nonNull(max)
+                ? max.getKey().toString()
+                : "";
+    }
+
+    private boolean isOperator(final Character token) {
+        return '+' == token || '-' == token || '(' == token || ')' == token
+                || '*' == token || '.' == token || '/' == token || '^' == token;
     }
 }
