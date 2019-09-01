@@ -75,4 +75,14 @@ class CalculatorTest {
         assertThat(calculator.getResult()).isEqualTo("45.0");
     }
 
+    @Test
+    @DisplayName("Сложное вычитание и сложение")
+    void evaluateWherePlusMinus() {
+        calculator.setExpression("(54-(10+6))-5");
+        calculator.evaluate();
+
+        assertThat(calculator.getExpressionRPN()).isEqualTo("54 10 6 + - 5 -");
+        assertThat(calculator.getResult()).isEqualTo("33.0");
+    }
+
 }
