@@ -1,9 +1,8 @@
 package com.task.app.core.entity;
 
 import com.task.app.core.data.Expression;
-import com.task.app.core.data.utils.Minus;
 import com.task.app.core.data.utils.Number;
-import com.task.app.core.data.utils.Plus;
+import com.task.app.core.data.utils.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -79,10 +78,17 @@ public class Calculator {
         for (String token : expressionRPN.split(" ")) {
             if (isOperator(token)) {
                 Expression exp = null;
-                if (token.equals("+"))
+                if ("+".equals(token)) {
                     exp = stack.push(new Plus(stack.pop(), stack.pop()));
-                else if (token.equals("-"))
+                } else if ("-".equals(token)) {
                     exp = stack.push(new Minus(stack.pop(), stack.pop()));
+                } else if ("*".equals(token)) {
+                    exp = stack.push(new Multiple(stack.pop(), stack.pop()));
+                } else if ("/".equals(token)) {
+                    exp = stack.push(new Divide(stack.pop(), stack.pop()));
+                } else if ("^".equals(token)) {
+                    exp = stack.push(new Pow(stack.pop(), stack.pop()));
+                }
                 if (null != exp) {
                     resultRPN = exp.interpret();
                     stack.pop();
@@ -100,7 +106,8 @@ public class Calculator {
         char[] in = expression.toCharArray();
         Stack<Character> stack = new Stack<>();
         StringBuilder out = new StringBuilder();
-        for (char c : in) {
+        for (int i = 0; i < in.length; i++) {
+            char c = in[i];
             switch (c) {
                 case '+':
                 case '-':
@@ -108,11 +115,16 @@ public class Calculator {
                         out.append(' ');
                         out.append(stack.pop());
                     }
-                    out.append(' ');
-                    stack.push(c);
+                    if (i == 0 || in[i - 1] == '(' || isOperator(String.valueOf(in[i - 1]))) {
+                        out.append(c);
+                    } else {
+                        out.append(' ');
+                        stack.push(c);
+                    }
                     break;
                 case '*':
                 case '/':
+                case '^':
                     out.append(' ');
                     stack.push(c);
                     break;
@@ -131,8 +143,9 @@ public class Calculator {
                     break;
             }
         }
-        while (!stack.isEmpty())
+        while (!stack.isEmpty()) {
             out.append(' ').append(stack.pop());
+        }
         expressionRPN = out.toString();
     }
 
@@ -146,7 +159,8 @@ public class Calculator {
     }
 
     private boolean isOperator(final String token) {
-        return "+".equals(token) || "-".equals(token);
+        return "+".equals(token) || "-".equals(token)
+                || "*".equals(token) || "/".equals(token) || "^".equals(token);
     }
 
 }

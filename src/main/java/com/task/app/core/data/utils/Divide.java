@@ -13,6 +13,6 @@ public class Divide implements Expression {
     }
 
     public float interpret() {
-        return left.interpret() + right.interpret();
+        return right.interpret() / left.interpret();
     }
 }
