@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/calculator")
 public class CalcController {
@@ -20,13 +22,20 @@ public class CalcController {
         this.service = service;
     }
 
+    @GetMapping(path = "/all")
+    public List<Calculator> getAll() {
+        return service.getAll();
+    }
+
     @GetMapping(path = "/{expression}")
-    public Calculator setExpression(@PathVariable(name = "expression") final String expression) {
+    public Calculator setExpression(
+            @PathVariable(name = "expression") final String expression) {
         return service.calculate(expression);
     }
 
-    @GetMapping(path = "get/{expression}")
-    public Calculator getExpression(@PathVariable(name = "expression") final Long expression) {
+    @GetMapping(path = "get/{expressionId}")
+    public Calculator getExpression(
+            @PathVariable(name = "expressionId") final Long expression) {
         return service.getExpression(expression);
     }
 }

@@ -1,7 +1,9 @@
-DROP TABLE IF EXISTS сalculator;
+DROP TABLE IF EXISTS calculator;
 
-CREATE TABLE сalculator
+CREATE TABLE calculator
 (
-    id    INT          NOT NULL PRIMARY KEY,
-    value VARCHAR(250) NOT NULL
+    id         INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    date       date         not null,
+    expression VARCHAR(250) NOT NULL,
+    result     VARCHAR(250) NOT NULL
 );
