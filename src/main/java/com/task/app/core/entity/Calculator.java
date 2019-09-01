@@ -26,6 +26,15 @@ public class Calculator {
     @Column
     private float result;
 
+    public Long getId() {
+        return id;
+    }
+
+    public Calculator setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
     public String getExpression() {
         return expression;
     }

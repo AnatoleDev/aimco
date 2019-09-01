@@ -8,7 +8,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,7 +55,7 @@ public class CalculatorController {
     //список всех заданий на дату
     @GetMapping("/onDate")
     public List<String> onDate(@RequestParam(name = "date")
-                                  @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate date) {
+                               @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate date) {
         return service.onDate(date);
     }
 

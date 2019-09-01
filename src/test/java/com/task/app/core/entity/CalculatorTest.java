@@ -129,7 +129,7 @@ class CalculatorTest {
         assertThat(calculator.getResult()).isEqualTo(50.0f);
     }
 
- @Test
+    @Test
     @DisplayName("Умножение со сложными скобками")
     void evaluateWhereHardParenthesesMultiple() {
         calculator.setExpression("(2*10)*(10*5)");

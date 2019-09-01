@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class CalculatorServiceImpl implements CalculatorService {
@@ -26,7 +25,7 @@ public class CalculatorServiceImpl implements CalculatorService {
 
     @Override
     public Calculator getExpression(final Long expressionId) {
-        return repository.findById(expressionId).orElseThrow();
+        return repository.findById(expressionId);
     }
 
     @Override
@@ -46,15 +45,11 @@ public class CalculatorServiceImpl implements CalculatorService {
 
     @Override
     public List<String> onDate(LocalDate date) {
-        return repository.findAllByDate(date).stream()
-                .map(Calculator::getExpression)
-                .collect(Collectors.toList());
+        return repository.findAllByDate(date);
     }
 
     @Override
     public List<String> onOperation(String expression) {
-        return repository.findAllByExpressionLike(expression).stream()
-                .map(Calculator::getExpression)
-                .collect(Collectors.toList());
+        return repository.findAllByExpressionLike(expression);
     }
 }
