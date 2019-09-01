@@ -120,8 +120,7 @@
 **Cамое используемое число:**
 ```
   @GetMapping("/popular")
-  public String popular() {
-          
+  public String popular() {      
 ```
 #Инструменты
 - in-memory H2
