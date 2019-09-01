@@ -26,7 +26,7 @@ class CalculatorTest {
         calculator.evaluate();
 
         assertThat(calculator.getExpressionRPN()).isEqualTo("54 6 +");
-        assertThat(calculator.getResult()).isEqualTo("60.0");
+        assertThat(calculator.getResult()).isEqualTo(60.0f);
     }
 
     @Test
@@ -36,7 +36,7 @@ class CalculatorTest {
         calculator.evaluate();
 
         assertThat(calculator.getExpressionRPN()).isEqualTo("54 6 -");
-        assertThat(calculator.getResult()).isEqualTo("48.0");
+        assertThat(calculator.getResult()).isEqualTo(48.0f);
     }
 
     @Test
@@ -46,7 +46,7 @@ class CalculatorTest {
         calculator.evaluate();
 
         assertThat(calculator.getExpressionRPN()).isEqualTo("54 10 6 + +");
-        assertThat(calculator.getResult()).isEqualTo("70.0");
+        assertThat(calculator.getResult()).isEqualTo(70.0f);
     }
 
     @Test
@@ -56,7 +56,7 @@ class CalculatorTest {
         calculator.evaluate();
 
         assertThat(calculator.getExpressionRPN()).isEqualTo("54 10 6 - -");
-        assertThat(calculator.getResult()).isEqualTo("50.0");
+        assertThat(calculator.getResult()).isEqualTo(50.0f);
     }
 
     @Test
@@ -66,7 +66,7 @@ class CalculatorTest {
         calculator.evaluate();
 
         assertThat(calculator.getExpressionRPN()).isEqualTo("54 10 6 + + 5 +");
-        assertThat(calculator.getResult()).isEqualTo("75.0");
+        assertThat(calculator.getResult()).isEqualTo(75.0f);
     }
 
     @Test
@@ -76,7 +76,7 @@ class CalculatorTest {
         calculator.evaluate();
 
         assertThat(calculator.getExpressionRPN()).isEqualTo("54 10 6 - - 5 -");
-        assertThat(calculator.getResult()).isEqualTo("45.0");
+        assertThat(calculator.getResult()).isEqualTo(45.0f);
     }
 
     @Test
@@ -86,7 +86,7 @@ class CalculatorTest {
         calculator.evaluate();
 
         assertThat(calculator.getExpressionRPN()).isEqualTo("54 10 6 + - 5 -");
-        assertThat(calculator.getResult()).isEqualTo("33.0");
+        assertThat(calculator.getResult()).isEqualTo(33.0f);
     }
 
     @Test
@@ -96,7 +96,7 @@ class CalculatorTest {
         calculator.evaluate();
 
         assertThat(calculator.getExpressionRPN()).isEqualTo("10 5 *");
-        assertThat(calculator.getResult()).isEqualTo("50.0");
+        assertThat(calculator.getResult()).isEqualTo(50.0f);
     }
 
     @Test
@@ -106,7 +106,7 @@ class CalculatorTest {
         calculator.evaluate();
 
         assertThat(calculator.getExpressionRPN()).isEqualTo("10 5 /");
-        assertThat(calculator.getResult()).isEqualTo("2.0");
+        assertThat(calculator.getResult()).isEqualTo(2.0f);
     }
 
     @Test
@@ -116,7 +116,7 @@ class CalculatorTest {
         calculator.evaluate();
 
         assertThat(calculator.getExpressionRPN()).isEqualTo("2 10 5 * *");
-        assertThat(calculator.getResult()).isEqualTo("100.0");
+        assertThat(calculator.getResult()).isEqualTo(100.0f);
     }
 
     @Test
@@ -126,7 +126,7 @@ class CalculatorTest {
         calculator.evaluate();
 
         assertThat(calculator.getExpressionRPN()).isEqualTo("100 10 5 / /");
-        assertThat(calculator.getResult()).isEqualTo("50.0");
+        assertThat(calculator.getResult()).isEqualTo(50.0f);
     }
 
  @Test
@@ -136,7 +136,7 @@ class CalculatorTest {
         calculator.evaluate();
 
         assertThat(calculator.getExpressionRPN()).isEqualTo("2 10 * 10 5 * *");
-        assertThat(calculator.getResult()).isEqualTo("1000.0");
+        assertThat(calculator.getResult()).isEqualTo(1000.0f);
     }
 
     @Test
@@ -146,7 +146,7 @@ class CalculatorTest {
         calculator.evaluate();
 
         assertThat(calculator.getExpressionRPN()).isEqualTo("100 50 / 10 5 / /");
-        assertThat(calculator.getResult()).isEqualTo("1.0");
+        assertThat(calculator.getResult()).isEqualTo(1.0f);
     }
 
     @Test
@@ -156,7 +156,7 @@ class CalculatorTest {
         calculator.evaluate();
 
         assertThat(calculator.getExpressionRPN()).isEqualTo("-7 8 * 9 9 4.5 / - +");
-        assertThat(calculator.getResult()).isEqualTo("-49.0");
+        assertThat(calculator.getResult()).isEqualTo(-49.0f);
     }
 
     @Test
@@ -166,7 +166,7 @@ class CalculatorTest {
         calculator.evaluate();
 
         assertThat(calculator.getExpressionRPN()).isEqualTo("2 2 ^");
-        assertThat(calculator.getResult()).isEqualTo("4.0");
+        assertThat(calculator.getResult()).isEqualTo(4.0f);
     }
 
     @Test
@@ -176,7 +176,7 @@ class CalculatorTest {
         calculator.evaluate();
 
         assertThat(calculator.getExpressionRPN()).isEqualTo("-49 2 ^");
-        assertThat(calculator.getResult()).isEqualTo("2401.0");
+        assertThat(calculator.getResult()).isEqualTo(2401.0f);
     }
 
     @Test
@@ -186,7 +186,7 @@ class CalculatorTest {
         calculator.evaluate();
 
         assertThat(calculator.getExpressionRPN()).isEqualTo("-7 8 * 9 9 4.5 / - + 2 ^");
-        assertThat(calculator.getResult()).isEqualTo("2401.0");
+        assertThat(calculator.getResult()).isEqualTo(2401.0f);
     }
 
     @Test
@@ -196,6 +196,6 @@ class CalculatorTest {
         calculator.evaluate();
 
         assertThat(calculator.getExpressionRPN()).isEqualTo("9 1 * 4.5 +");
-        assertThat(calculator.getResult()).isEqualTo("13.5");
+        assertThat(calculator.getResult()).isEqualTo(13.5f);
     }
 }

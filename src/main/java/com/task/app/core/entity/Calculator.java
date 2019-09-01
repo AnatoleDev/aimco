@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Stack;
 
+import static java.util.Objects.nonNull;
 import static org.apache.logging.log4j.util.Strings.isBlank;
 
 @Entity
@@ -23,7 +24,7 @@ public class Calculator {
     @Column
     private LocalDate date;
     @Column
-    private String result;
+    private float result;
 
     public String getExpression() {
         return expression;
@@ -34,11 +35,11 @@ public class Calculator {
         return this;
     }
 
-    public String getResult() {
+    public float getResult() {
         return result;
     }
 
-    public Calculator setResult(String result) {
+    public Calculator setResult(float result) {
         this.result = result;
         return this;
     }
@@ -78,18 +79,15 @@ public class Calculator {
         for (String token : expressionRPN.split(" ")) {
             if (isOperator(token)) {
                 Expression exp = null;
-                if ("+".equals(token)) {
-                    exp = stack.push(new Plus(stack.pop(), stack.pop()));
-                } else if ("-".equals(token)) {
-                    exp = stack.push(new Minus(stack.pop(), stack.pop()));
-                } else if ("*".equals(token)) {
-                    exp = stack.push(new Multiple(stack.pop(), stack.pop()));
-                } else if ("/".equals(token)) {
-                    exp = stack.push(new Divide(stack.pop(), stack.pop()));
-                } else if ("^".equals(token)) {
-                    exp = stack.push(new Pow(stack.pop(), stack.pop()));
+                switch (token) {
+                    case "+": exp = stack.push(new Plus(stack.pop(), stack.pop())); break;
+                    case "-": exp = stack.push(new Minus(stack.pop(), stack.pop())); break;
+                    case "*": exp = stack.push(new Multiple(stack.pop(), stack.pop())); break;
+                    case "/": exp = stack.push(new Divide(stack.pop(), stack.pop())); break;
+                    case "^": exp = stack.push(new Pow(stack.pop(), stack.pop())); break;
+                    default:break;
                 }
-                if (null != exp) {
+                if (nonNull(exp)) {
                     resultRPN = exp.interpret();
                     stack.pop();
                     stack.push(new Number(resultRPN));
@@ -99,7 +97,7 @@ public class Calculator {
                 stack.push(new Number(Float.parseFloat(token)));
             }
         }
-        result = String.valueOf(resultRPN);
+        result = resultRPN;
     }
 
     private void resultPostFix() {
@@ -162,5 +160,4 @@ public class Calculator {
         return "+".equals(token) || "-".equals(token)
                 || "*".equals(token) || "/".equals(token) || "^".equals(token);
     }
-
 }

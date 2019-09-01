@@ -5,7 +5,6 @@ import com.task.app.core.repositories.CalculatorRepository;
 import com.task.app.core.service.CalculatorService;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -18,12 +17,8 @@ public class CalculatorServiceImpl implements CalculatorService {
     }
 
     @Override
-    public Calculator calculate(final String expression) {
-        final var calculator = new Calculator()
-                .setDate(LocalDate.now())
-                .setExpression(expression);
+    public Calculator calculate(Calculator calculator) {
         calculator.evaluate();
-        System.out.println(calculator.toString());
         return repository.save(calculator);
     }
 

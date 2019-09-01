@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CalculatorService {
 
-    Calculator calculate(final String expression);
+    Calculator calculate(Calculator calculator);
 
     Calculator getExpression(final Long expression);
 
