@@ -5,7 +5,9 @@ import com.task.app.core.repositories.CalculatorRepository;
 import com.task.app.core.service.CalculatorService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CalculatorServiceImpl implements CalculatorService {
@@ -30,5 +32,29 @@ public class CalculatorServiceImpl implements CalculatorService {
     @Override
     public List<Calculator> getAll() {
         return repository.findAll();
+    }
+
+    @Override
+    public int countForData(final LocalDate date) {
+        return repository.countAllByDate(date);
+    }
+
+    @Override
+    public int operation(final String expression) {
+        return repository.countAllByExpression(expression);
+    }
+
+    @Override
+    public List<String> onDate(LocalDate date) {
+        return repository.findAllByDate(date).stream()
+                .map(Calculator::getExpression)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<String> onOperation(String expression) {
+        return repository.findAllByExpressionLike(expression).stream()
+                .map(Calculator::getExpression)
+                .collect(Collectors.toList());
     }
 }

@@ -44,26 +44,26 @@ public class CalculatorController {
     @GetMapping("/count")
     public int countForData(@RequestParam(name = "date")
                             @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate date) {
-        return 0;
+        return service.countForData(date);
     }
 
     //количество заданий содержащих заданную операцию
     @GetMapping("/operation")
     public int operation(@RequestParam(name = "expression") final String expression) {
-        return 0;
+        return service.operation(expression);
     }
 
     //список всех заданий на дату
     @GetMapping("/onDate")
-    public List<String> operation(@RequestParam(name = "date")
+    public List<String> onDate(@RequestParam(name = "date")
                                   @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate date) {
-        return Collections.singletonList(date.toString());
+        return service.onDate(date);
     }
 
     //список всех заданий с операцией
     @GetMapping("/onOperation")
     public List<String> onOperation(@RequestParam(name = "expression") final String expression) {
-        return Collections.singletonList(expression);
+        return service.onOperation(expression);
     }
 
     //самое используемое число
