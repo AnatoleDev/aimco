@@ -58,11 +58,12 @@ public class CalculatorServiceImpl implements CalculatorService {
 
     @Override
     public String popular() {
-        Map<Character, Integer> map = new HashMap<>();
+        Map<String, Integer> map = new HashMap<>();
         getAll().forEach(calculator -> {
-                    String str = calculator.getExpression();
-                    char[] chars = str.toCharArray();
-                    for (Character c : chars) {
+                    calculator.evaluate();
+                    String str = calculator.getExpressionRPN();
+                    String[] chars = str.split(" ");
+                    for (String c : chars) {
                         if (!isOperator(c)) {
                             int k = 1;
                             if (map.containsKey(c)) {
@@ -73,11 +74,11 @@ public class CalculatorServiceImpl implements CalculatorService {
                     }
                 }
         );
-        Set<Entry<Character, Integer>> setvalue = map.entrySet();
-        Iterator<Entry<Character, Integer>> i = setvalue.iterator();
-        Entry<Character, Integer> max = null;
+        Set<Entry<String, Integer>> setvalue = map.entrySet();
+        Iterator<Entry<String, Integer>> i = setvalue.iterator();
+        Entry<String, Integer> max = null;
         while (i.hasNext()) {
-            Entry<Character, Integer> me = i.next();
+            Entry<String, Integer> me = i.next();
             if (max == null) {
                 max = me;
             } else if (me.getValue() > max.getValue()) {
@@ -85,12 +86,12 @@ public class CalculatorServiceImpl implements CalculatorService {
             }
         }
         return nonNull(max)
-                ? max.getKey().toString()
+                ? max.getKey()
                 : "";
     }
 
-    private boolean isOperator(final Character token) {
-        return '+' == token || '-' == token || '(' == token || ')' == token
-                || '*' == token || '.' == token || '/' == token || '^' == token;
+    private boolean isOperator(final String token) {
+        return token.equals("+") || "-".equals(token ) || "(".equals(token )
+                || ")".equals(token) || "*".equals(token ) || ".".equals(token ) || "/".equals(token ) || "^".equals(token) ;
     }
 }
