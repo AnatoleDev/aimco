@@ -128,7 +128,7 @@
 - jdbc
 - spring-boot
 - Reverse Polish notation
-- шаблон проектирования при реализации RPN Implementation из книги Design Patterns and Best Practices in Java
+- шаблон проектирования при реализации RPN INTERPRETER из книги Design Patterns and Best Practices in Java
 
 
 Итого
